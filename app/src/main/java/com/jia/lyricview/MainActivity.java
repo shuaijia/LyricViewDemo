@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 //        lyricView.setOnClickListener(this);
 //        recorderView.setOnClickListener(this);
-        lyricView.setVisibility(View.GONE);
-        recorderView.setVisibility(View.VISIBLE);
+        lyricView.setVisibility(View.VISIBLE);
+        recorderView.setVisibility(View.GONE);
 
         recorderView.setPlaying(true);
     }
