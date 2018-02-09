@@ -5,16 +5,42 @@
     android:layout_height="match_parent"
     tools:context="com.jia.lyricview.MainActivity">
 
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/tv_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="切换"
+            android:textColor="#fff"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:textSize="16sp"/>
+
+    </RelativeLayout>
 
     <com.jia.lyricview.JsLyricView
         android:id="@+id/lyricView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/title" />
 
-
-    <com.jia.lyricview.RecorderView
-        android:id="@+id/recorderView"
+    <RelativeLayout
+        android:id="@+id/rl_recorderView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible" />
+        android:layout_below="@id/title"
+        android:background="#f2f2f2">
+
+        <com.jia.lyricview.RecorderView
+            android:id="@+id/recorderView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
 </RelativeLayout>

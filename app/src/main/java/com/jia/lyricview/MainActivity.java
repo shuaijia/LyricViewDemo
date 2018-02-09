@@ -7,6 +7,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 
 import com.commit451.nativestackblur.NativeStackBlur;
@@ -18,6 +20,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private JsLyricView lyricView;
     private RecorderView recorderView;
+    private RelativeLayout rl_recorderView;
+    private TextView tv_change;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         lyricView = (JsLyricView) findViewById(R.id.lyricView);
         recorderView = (RecorderView) findViewById(R.id.recorderView);
+        rl_recorderView = (RelativeLayout) findViewById(R.id.rl_recorderView);
+        tv_change = (TextView) findViewById(R.id.tv_change);
 
         Resources r = this.getResources();
         Bitmap bm = NativeStackBlur.process(BitmapFactory.decodeResource(r, R.mipmap.lyric_bg), 25);
@@ -39,29 +45,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             e.printStackTrace();
         }
 
-//        lyricView.setOnClickListener(this);
-//        recorderView.setOnClickListener(this);
-        lyricView.setVisibility(View.VISIBLE);
-        recorderView.setVisibility(View.GONE);
+        tv_change.setOnClickListener(this);
 
-        recorderView.setPlaying(true);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.lyricView:
+            case R.id.tv_change:
 
-                lyricView.setVisibility(View.GONE);
-                recorderView.setVisibility(View.VISIBLE);
+                if (lyricView.getVisibility() == View.VISIBLE) {
+                    lyricView.setVisibility(View.GONE);
+                    rl_recorderView.setVisibility(View.VISIBLE);
+                    recorderView.setPlaying(true);
+                } else {
+                    lyricView.setVisibility(View.VISIBLE);
+                    rl_recorderView.setVisibility(View.GONE);
+                    recorderView.setPlaying(false);
+                }
 
                 break;
-            case R.id.recorderView:
 
-                lyricView.setVisibility(View.VISIBLE);
-                recorderView.setVisibility(View.GONE);
-
-                break;
         }
     }
 }
